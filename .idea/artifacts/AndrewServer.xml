@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AndrewServer">
+    <output-path>D:/Games/Minecraft/Servers/Spigot Server for Plugins/plugins</output-path>
+    <root id="archive" name="AndrewServer.jar">
+      <element id="module-output" name="AndrewServer" />
+      <element id="file-copy" path="$PROJECT_DIR$/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>
