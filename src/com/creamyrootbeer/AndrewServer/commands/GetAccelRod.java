@@ -17,7 +17,7 @@ public class GetAccelRod implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
 
         if ( !(commandSender instanceof Player) ) {
-            commandSender.sendMessage("You must be a player to use this command!");
+            commandSender.sendMessage(ChatColor.RED + "You must be a player to use this command!");
             return false;
         }
 

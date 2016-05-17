@@ -1,5 +1,6 @@
 package com.creamyrootbeer.AndrewServer.events.player;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,15 +14,11 @@ import org.bukkit.inventory.ItemStack;
 import com.creamyrootbeer.AndrewServer.ServerPlugin;
 import com.creamyrootbeer.AndrewServer.commands.Clickable;
 import com.creamyrootbeer.AndrewServer.items.ASItem;
-import com.creamyrootbeer.AndrewServer.util.Reloadable;
 
 /**
  * Created by Collin on 5/8/2016.
  */
-public class RodClickHandler implements Listener, Reloadable {
-
-	// private double speedMult;
-	// private double speedDiv;
+public class RodClickHandler implements Listener {
 
 	private Clickable leftClickAction;
 	private Clickable rightClickAction;
@@ -37,7 +34,6 @@ public class RodClickHandler implements Listener, Reloadable {
 	}
 
 	public void reload() {
-
 		this.config = pl.getConfig();
 		leftClickAction = Clickable.valueOf(config.getString("Rod_Left_Click"));
 		rightClickAction = Clickable.valueOf(config.getString("Rod_Right_Click"));
@@ -47,6 +43,9 @@ public class RodClickHandler implements Listener, Reloadable {
 	public void onPlayerRightClick(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
+
+		Bukkit.broadcastMessage("Left Click Command: " + config.getString("Rod_Left_Click"));
+		Bukkit.broadcastMessage("Right Click Command: " + config.getString("Rod_Right_Click"));
 
 		try {
 			if (item.getType().equals(Material.STICK)) {
