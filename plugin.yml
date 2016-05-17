@@ -1,0 +1,9 @@
+main: com.creamyrootbeer.AndrewServer.ServerPlugin
+version: 1.0.5
+name: AndrewServer
+
+commands:
+  accrod:
+    description: Gives a player a rod of acceleration
+  server:
+    description: Server plugin commands

@@ -1,0 +1,13 @@
+# Currently Deprecated
+Speed_Multiplier: 1.5
+
+# The number your current speed is divided by when decelerating with the rod.
+Speed_Divisor: 10
+
+# The static speed for the set_speed command
+Static_Speed: 5.0
+
+# Sets the command options for the following: (Must be NONE, ACCELERATE, DECELERATE, SET_SPEED
+Rod_Right_Click: "SET_SPEED"
+Rod_Left_Click: "SET_SPEED"
+
