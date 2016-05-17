@@ -5,5 +5,3 @@ name: AndrewServer
 commands:
   accrod:
     description: Gives a player a rod of acceleration
-  server:
-    description: Server plugin commands

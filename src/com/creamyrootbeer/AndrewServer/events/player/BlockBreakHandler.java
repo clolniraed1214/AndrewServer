@@ -14,8 +14,13 @@ public class BlockBreakHandler implements Listener {
 		Player player = event.getPlayer();
 		
 		try {
-			if (!player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ASItem.ACC_ROD.name)) return;
-			event.setCancelled(true);
+			String handHeldName = player.getInventory().getItemInMainHand().getItemMeta().getDisplayName();
+			
+			for (ASItem item : ASItem.values()) {
+				if (item.gameName == handHeldName) {
+					event.setCancelled(true);
+				}
+			}
 		} catch (Exception e) {
 			return;
 		}

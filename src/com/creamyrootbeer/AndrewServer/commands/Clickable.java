@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-import com.creamyrootbeer.AndrewServer.events.player.RodClickHandler;
+import com.creamyrootbeer.AndrewServer.events.player.PlayerClickHandler;
 import com.creamyrootbeer.AndrewServer.util.VectorUtils;
 
 /**
@@ -19,7 +19,7 @@ public enum Clickable {
             double speedMultiplier = config.getDouble("Speed_Multiplier");
             Player player = event.getPlayer();
             double[] yawPitch = VectorUtils.getPlayerYawPitch(player.getLocation());
-            double speed = RodClickHandler.getNewSpeed(player.getVelocity().length(), speedMultiplier);
+            double speed = PlayerClickHandler.getNewSpeed(player.getVelocity().length(), speedMultiplier);
 
             Vector vec = VectorUtils.getVector(speed, yawPitch[0], yawPitch[1]);
             player.setVelocity(vec);

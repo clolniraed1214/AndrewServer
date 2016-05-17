@@ -10,7 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.creamyrootbeer.AndrewServer.commands.GetAccelRod;
 import com.creamyrootbeer.AndrewServer.events.player.BlockBreakHandler;
-import com.creamyrootbeer.AndrewServer.events.player.RodClickHandler;
+import com.creamyrootbeer.AndrewServer.events.player.PlayerClickHandler;
 
 /**
  * Created by Collin on 5/7/2016.
@@ -45,7 +45,7 @@ public class ServerPlugin extends JavaPlugin {
 	private void registerEvents() {
 		PluginManager pm = Bukkit.getPluginManager();
 
-		pm.registerEvents(new RodClickHandler(this), this);
+		pm.registerEvents(new PlayerClickHandler(this), this);
 		pm.registerEvents(new BlockBreakHandler(), this);
 	}
 
