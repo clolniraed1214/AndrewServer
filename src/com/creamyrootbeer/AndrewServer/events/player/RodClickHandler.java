@@ -32,14 +32,15 @@ public class RodClickHandler implements Listener, Reloadable {
 
 	public RodClickHandler(ServerPlugin pl) {
 		this.pl = pl;
-		this.config = pl.getConfig();
 		
 		reload();
 	}
 
 	public void reload() {
-		leftClickAction = Clickable.valueOf(pl.getConfig().getString("Rod_Left_Click"));
-		rightClickAction = Clickable.valueOf(pl.getConfig().getString("Rod_Right_Click"));
+
+		this.config = pl.getConfig();
+		leftClickAction = Clickable.valueOf(config.getString("Rod_Left_Click"));
+		rightClickAction = Clickable.valueOf(config.getString("Rod_Right_Click"));
 	}
 
 	@EventHandler
