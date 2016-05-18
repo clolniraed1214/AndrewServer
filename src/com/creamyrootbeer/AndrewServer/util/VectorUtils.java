@@ -17,24 +17,19 @@ public class VectorUtils {
     	return vec;
 	}
     
-    public static double[] getPlayerYawPitch(Location loc) {
-    	double[] yawPitch = new double[2];
-
-    	yawPitch[0] = loc.getYaw();
-    	yawPitch[1] = loc.getPitch();
+    public static Direction getPlayerYawPitch(Location loc) {
+    	Direction yawPitch = new Direction(loc.getYaw(), loc.getPitch());
     	
     	return yawPitch;
     }
     
-    public static double[] getYawPitch(Vector vec) {
+    public static Direction getYawPitch(Vector vec) {
     	
     	World world = Bukkit.getWorlds().get(0);
     	Location loc = new Location(world, 0D, 0D, 0D);
     	loc.setDirection(vec);
     	
-    	double[] yawPitch = new double[2];
-    	yawPitch[0] = loc.getYaw();
-    	yawPitch[1] = loc.getPitch();
+    	Direction yawPitch = new Direction(loc.getYaw(), loc.getPitch());
     	
     	return yawPitch;
     	

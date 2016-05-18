@@ -3,5 +3,7 @@ version: 1.0.5
 name: AndrewServer
 
 commands:
+  getitem:
+    description: Gives a player an item with given name
   accrod:
     description: Gives a player a rod of acceleration

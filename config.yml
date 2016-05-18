@@ -11,3 +11,8 @@ Static_Speed: 5.0
 AccRod_Right_Click: SET_SPEED
 AccRod_Left_Click: SET_SPEED
 
+FlakSnowball_Left_Click: NONE
+FlakSnowball_Right_Click: FLAK
+
+BombBay_Left_Click: NONE
+BombBay_Right_Click: BOMB

@@ -8,7 +8,8 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.creamyrootbeer.AndrewServer.commands.GetAccelRod;
+import com.creamyrootbeer.AndrewServer.commands.GetAccRod;
+import com.creamyrootbeer.AndrewServer.commands.GetCustomItem;
 import com.creamyrootbeer.AndrewServer.events.entity.SnowballHitEvent;
 import com.creamyrootbeer.AndrewServer.events.player.BlockBreakHandler;
 import com.creamyrootbeer.AndrewServer.events.player.PlayerClickHandler;
@@ -40,7 +41,8 @@ public class ServerPlugin extends JavaPlugin {
 	}
 
 	private void registerCommands() {
-		getCommand("accrod").setExecutor(new GetAccelRod());
+		getCommand("getitem").setExecutor(new GetCustomItem());
+		getCommand("accrod").setExecutor(new GetAccRod());
 	}
 
 	private void registerEvents() {

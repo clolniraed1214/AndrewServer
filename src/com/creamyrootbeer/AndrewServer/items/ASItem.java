@@ -8,24 +8,37 @@ import com.creamyrootbeer.AndrewServer.util.EasyItem;
 
 public enum ASItem {
 
-	ACC_ROD(ChatColor.AQUA + "Rod of Acceleration", "AccRod", "andrewserver.items.accrod") {
+	ACC_ROD(ChatColor.AQUA + "Rod of Acceleration", "AccRod") {
         @Override
         public ItemStack getItem() {
         	return EasyItem.Create(Material.STICK, this.gameName);
         }
-    }
+    },
+	FLAK_CANNON(ChatColor.RED + "Flak Cannon", "FlakSnowball") {
 
+		@Override
+		public ItemStack getItem() {
+			return EasyItem.Create(Material.SNOW_BALL, gameName);
+		}
+		
+	},
+	BOMB_BAY(ChatColor.RED + "Bombs", "BombBay") {
+
+		@Override
+		public ItemStack getItem() {
+			return EasyItem.Create(Material.APPLE, gameName, new String[]{"<<5>>", "Bombs Left"});
+		}
+		
+	}
 	;
 
 	public final String gameName;
-	public final String permission;
 	public final String dataName;
 
     public abstract ItemStack getItem();
     
-	ASItem(String name, String dataName, String permission) {
+	ASItem(String name, String dataName) {
 		this.gameName = name;
-		this.permission = permission;
 		this.dataName = dataName;
 	}
 

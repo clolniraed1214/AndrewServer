@@ -11,7 +11,7 @@ import com.creamyrootbeer.AndrewServer.items.ASItem;
 /**
  * Created by Collin on 5/8/2016.
  */
-public class GetAccelRod implements CommandExecutor {
+public class GetAccRod implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -23,7 +23,7 @@ public class GetAccelRod implements CommandExecutor {
 
         Player player = (Player) commandSender;
         
-        if ( !(player.hasPermission("andrewserver.accrod")) ) {
+        if ( !(player.hasPermission("andrewserver..accrod")) ) {
         	player.sendMessage(ChatColor.RED + "You don't have permission to use this command!");
             return false;
         }

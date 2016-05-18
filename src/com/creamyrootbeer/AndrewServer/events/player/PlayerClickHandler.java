@@ -36,7 +36,7 @@ public class PlayerClickHandler implements Listener {
 		for (ASItem item : ASItem.values()) {
 			if (handHeld.getItemMeta().getDisplayName().equals(item.gameName)) {
 				
-				if (!player.hasPermission(item.permission)) {
+				if (!player.hasPermission("andrewserver.items.get." + item.dataName)) {
 					player.sendMessage(ChatColor.RED + "You do not have the proper permissions to use this item!");
 					return;
 				}
