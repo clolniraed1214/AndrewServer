@@ -7,7 +7,7 @@ Speed_Divisor: 10
 # The static speed for the set_speed command
 Static_Speed: 5.0
 
-# Sets the command options for the following: (Must be NONE, ACCELERATE, DECELERATE, SET_SPEED
+# Sets the command options for the following: (Must be NONE, ACCELERATE, DECELERATE, SET_SPEED)
 AccRod_Right_Click: SET_SPEED
 AccRod_Left_Click: SET_SPEED
 

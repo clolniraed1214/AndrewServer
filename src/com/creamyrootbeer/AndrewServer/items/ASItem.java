@@ -4,14 +4,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import com.creamyrootbeer.AndrewServer.util.ItemFactory;
+import com.creamyrootbeer.AndrewServer.util.EasyItem;
 
 public enum ASItem {
 
 	ACC_ROD(ChatColor.AQUA + "Rod of Acceleration", "AccRod", "andrewserver.items.accrod") {
         @Override
         public ItemStack getItem() {
-        	return ItemFactory.create(Material.STICK, this.gameName);
+        	return new EasyItem(Material.STICK, this.gameName);
         }
     }
 

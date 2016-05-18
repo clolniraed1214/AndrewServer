@@ -1,4 +1,4 @@
-package com.creamyrootbeer.AndrewServer.commands;
+package com.creamyrootbeer.AndrewServer.items;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -58,14 +58,4 @@ public enum Clickable {
     ;
 
     public abstract void runAction(PlayerInteractEvent event, FileConfiguration config);
-
-    /*protected double speedMultiplier = Bukkit.getPluginManager().getPlugin("AndrewServer").getConfig().getDouble("Speed_Multiplier");
-    protected double speedDivisor = Bukkit.getPluginManager().getPlugin("AndrewServer").getConfig().getDouble("Speed_Divisor");
-    protected double staticSpeed = Bukkit.getPluginManager().getPlugin("AndrewServer").getConfig().getDouble("Static_Speed");
-
-    public void reload() {
-        speedMultiplier = Bukkit.getPluginManager().getPlugin("AndrewServer").getConfig().getDouble("Speed_Multiplier");
-        speedDivisor = Bukkit.getPluginManager().getPlugin("AndrewServer").getConfig().getDouble("Speed_Divisor");
-        staticSpeed = Bukkit.getPluginManager().getPlugin("AndrewServer").getConfig().getDouble("Static_Speed");
-    }*/
 }
