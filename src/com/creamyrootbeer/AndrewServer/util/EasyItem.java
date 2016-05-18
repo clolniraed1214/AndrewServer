@@ -8,28 +8,30 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class EasyItem extends ItemStack {
-	public EasyItem(Material material, String displayName, String[] lore, HashMap<Enchantment, Integer> enchants) {
-		super(material);
+public class EasyItem {
+	public static ItemStack Create(Material material, String displayName, String[] lore, HashMap<Enchantment, Integer> enchants) {
+		ItemStack item = new ItemStack(material);
 		
-		ItemMeta meta = this.getItemMeta();
+		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(displayName);
 		meta.setLore(getLore(lore));
 		
-		this.setItemMeta(meta);
-		this.addUnsafeEnchantments(enchants);
+		item.setItemMeta(meta);
+		item.addUnsafeEnchantments(enchants);
+		
+		return item;
 	}
 	
-	public EasyItem(Material material, String displayName, String[] lore) {
-		this(material, displayName, lore, new HashMap<Enchantment, Integer>());
+	public static ItemStack Create(Material material, String displayName, String[] lore) {
+		return Create(material, displayName, lore, new HashMap<Enchantment, Integer>());
 	}
 	
-	public EasyItem(Material material, String displayName) {
-		this(material, displayName, new String[]{});
+	public static ItemStack Create(Material material, String displayName) {
+		return Create(material, displayName, new String[]{});
 	}
 	
-	public EasyItem(Material material, String displayName, HashMap<Enchantment, Integer> enchants) {
-		this(material, displayName, new String[]{}, enchants);
+	public static ItemStack Create(Material material, String displayName, HashMap<Enchantment, Integer> enchants) {
+		return Create(material, displayName, new String[]{}, enchants);
 	}
 	
 	private static ArrayList<String> getLore(String[] lore) {

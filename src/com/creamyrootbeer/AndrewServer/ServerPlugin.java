@@ -9,6 +9,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.creamyrootbeer.AndrewServer.commands.GetAccelRod;
+import com.creamyrootbeer.AndrewServer.events.entity.SnowballHitEvent;
 import com.creamyrootbeer.AndrewServer.events.player.BlockBreakHandler;
 import com.creamyrootbeer.AndrewServer.events.player.PlayerClickHandler;
 
@@ -47,6 +48,7 @@ public class ServerPlugin extends JavaPlugin {
 
 		pm.registerEvents(new PlayerClickHandler(this), this);
 		pm.registerEvents(new BlockBreakHandler(), this);
+		pm.registerEvents(new SnowballHitEvent(), this);
 	}
 
 	private void registerConfig() {

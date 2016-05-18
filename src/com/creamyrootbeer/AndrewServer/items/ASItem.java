@@ -11,7 +11,7 @@ public enum ASItem {
 	ACC_ROD(ChatColor.AQUA + "Rod of Acceleration", "AccRod", "andrewserver.items.accrod") {
         @Override
         public ItemStack getItem() {
-        	return new EasyItem(Material.STICK, this.gameName);
+        	return EasyItem.Create(Material.STICK, this.gameName);
         }
     }
 
