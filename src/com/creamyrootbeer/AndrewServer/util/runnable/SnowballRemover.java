@@ -4,10 +4,19 @@ import java.util.ArrayList;
 
 import org.bukkit.entity.Snowball;
 
-public interface SnowballRemover extends Runnable {
+public class SnowballRemover implements Runnable {
 
+	private ArrayList<Snowball> snowballs;
+	
+	public SnowballRemover(ArrayList<Snowball> snowballs) {
+		this.snowballs = snowballs;
+	}
+	
 	@Override
-	public void run();
-	public void snowballs(ArrayList<Snowball> snowballs);
+	public void run() {
+		for (Snowball snow : this.snowballs) {
+			snow.remove();
+		}
+	}
 
 }

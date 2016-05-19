@@ -25,7 +25,7 @@ public class SnowballHitEvent implements Listener {
 		if (!(event.getEntity() instanceof Player)) return;
 		if (!(event.getDamager() instanceof Snowball)) return;
 		
-		Snowball snow = (Snowball) event.getEntity();
+		Snowball snow = (Snowball) event.getDamager();
 		if (snow.hasMetadata("type")) {
 			SnowType type = (SnowType) snow.getMetadata("type").get(0).value();
 			

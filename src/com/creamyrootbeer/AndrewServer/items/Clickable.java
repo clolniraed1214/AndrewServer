@@ -9,6 +9,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import com.creamyrootbeer.AndrewServer.ServerPlugin;
@@ -16,7 +18,9 @@ import com.creamyrootbeer.AndrewServer.entities.SnowType;
 import com.creamyrootbeer.AndrewServer.util.Direction;
 import com.creamyrootbeer.AndrewServer.util.VectorUtils;
 import com.creamyrootbeer.AndrewServer.util.meta.Meta;
+import com.creamyrootbeer.AndrewServer.util.runnable.DropNewBomb;
 import com.creamyrootbeer.AndrewServer.util.runnable.PlayerAccelRemover;
+import com.creamyrootbeer.AndrewServer.util.runnable.ReloadBombBay;
 import com.creamyrootbeer.AndrewServer.util.runnable.SnowballRemover;
 
 /**
@@ -100,25 +104,7 @@ public enum Clickable {
 				}
 			}
 			
-			SnowballRemover remover = new SnowballRemover(){
-				private ArrayList<Snowball> snowballs;
-				
-				public void snowballs(ArrayList<Snowball> snowballs) {
-					this.snowballs = snowballs;
-				}
-				
-				@Override
-				public void run() {
-					for (Snowball snow : this.snowballs) {
-						snow.remove();
-					}
-				}
-				
-			};
-			
-			remover.snowballs(snowballs);
-			
-			Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), remover, 1 * 20L);
+			Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new SnowballRemover(snowballs), 1 * 20L);
 			
 		}
     	
@@ -126,6 +112,16 @@ public enum Clickable {
     BOMB {
 		@Override
 		public void runAction(PlayerInteractEvent event, FileConfiguration config) {
+			
+			ClickableVars vars = ServerPlugin.getVars();
+			String name = event.getPlayer().getName();
+			
+			if (!vars.bombCounts.containsKey(name)) vars.bombCounts.put(name, config.getInt("BombBay_Capacity"));
+			int bombs = vars.bombCounts.get(name);
+			
+			if (vars.bombCounts.get(name) == 0) return;
+			if (vars.bombDelayNames.contains(name)) return;
+			
 			Location loc = event.getPlayer().getLocation();
 			loc.add(0, -0.5, 0);
 			
@@ -135,6 +131,28 @@ public enum Clickable {
 			Snowball snow = (Snowball) loc.getWorld().spawnEntity(loc, EntityType.SNOWBALL);
 			snow.setMetadata("type", Meta.meta(SnowType.BOMB));
 			snow.setVelocity(vec);
+			
+			vars.bombCounts.put(name, bombs-1);
+			
+			Long reloadTime = config.getLong("BombBay_ReloadTime");
+			Long delayTime = config.getLong("BombBay_BombDropDelay");
+			
+			if (bombs != 1) vars.bombDelayNames.add(name);
+			
+			if (bombs == 1) {Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new ReloadBombBay(name), reloadTime * 10L);}
+			else {Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new DropNewBomb(name), delayTime);}
+			
+			ItemStack item = event.getPlayer().getInventory().getItemInOffHand();
+			
+			if (item.hasItemMeta()) {
+				if (item.getItemMeta().getDisplayName().equals(ASItem.BOMB_BAY.gameName)) {
+					ItemMeta meta = item.getItemMeta();
+					meta.getLore().set(1, "<<" + (bombs-1) + ">>");
+					item.setItemMeta(meta);
+					event.getPlayer().getInventory().setItemInOffHand(item);
+				}
+			}
+			
 		}
 	},
     NONE {
