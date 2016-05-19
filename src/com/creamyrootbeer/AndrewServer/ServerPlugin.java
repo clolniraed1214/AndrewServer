@@ -13,6 +13,7 @@ import com.creamyrootbeer.AndrewServer.commands.GetCustomItem;
 import com.creamyrootbeer.AndrewServer.events.entity.SnowballHitEvent;
 import com.creamyrootbeer.AndrewServer.events.player.BlockBreakHandler;
 import com.creamyrootbeer.AndrewServer.events.player.PlayerClickHandler;
+import com.creamyrootbeer.AndrewServer.items.ClickableVars;
 
 /**
  * Created by Collin on 5/7/2016.
@@ -22,6 +23,7 @@ public class ServerPlugin extends JavaPlugin {
 	// private static final String INSULT = "YOUR FACE!!! OOOHHHHH!!!";
 	private Logger logger;
 	private PluginDescriptionFile pdfFile;
+	private final ClickableVars vars = new ClickableVars();
 
 	public void onEnable() {
 
@@ -62,5 +64,9 @@ public class ServerPlugin extends JavaPlugin {
 		ServerPlugin pl = (ServerPlugin) Bukkit.getPluginManager().getPlugin("AndrewServer");
 
 		return pl;
+	}
+	
+	public static ClickableVars getVars() {
+		return getPl().vars;
 	}
 }

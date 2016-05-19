@@ -30,8 +30,12 @@ public class PlayerClickHandler implements Listener {
 		Player player = event.getPlayer();
 		ItemStack handHeld = event.getItem();
 		
-		if (!handHeld.hasItemMeta())
+		try {		
+			if (!handHeld.hasItemMeta())
+				return;
+		} catch (NullPointerException e) {
 			return;
+		}
 
 		for (ASItem item : ASItem.values()) {
 			if (handHeld.getItemMeta().getDisplayName().equals(item.gameName)) {

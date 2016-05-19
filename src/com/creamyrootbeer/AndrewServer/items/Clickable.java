@@ -9,17 +9,15 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
 import org.bukkit.util.Vector;
 
 import com.creamyrootbeer.AndrewServer.ServerPlugin;
 import com.creamyrootbeer.AndrewServer.entities.SnowType;
-import com.creamyrootbeer.AndrewServer.events.player.PlayerClickHandler;
 import com.creamyrootbeer.AndrewServer.util.Direction;
-import com.creamyrootbeer.AndrewServer.util.SnowballRemover;
 import com.creamyrootbeer.AndrewServer.util.VectorUtils;
 import com.creamyrootbeer.AndrewServer.util.meta.Meta;
+import com.creamyrootbeer.AndrewServer.util.runnable.PlayerAccelRemover;
+import com.creamyrootbeer.AndrewServer.util.runnable.SnowballRemover;
 
 /**
  * Created by Collin on 5/16/2016.
@@ -29,13 +27,28 @@ public enum Clickable {
     ACCELERATE {
         @Override
         public void runAction(PlayerInteractEvent event, FileConfiguration config) {
-            double speedMultiplier = config.getDouble("Speed_Multiplier");
-            Player player = event.getPlayer();
-            Direction yawPitch = VectorUtils.getPlayerYawPitch(player.getLocation());
-            double speed = PlayerClickHandler.getNewSpeed(player.getVelocity().length(), speedMultiplier);
-
-            Vector vec = VectorUtils.getVector(speed, yawPitch.getYaw(), yawPitch.getPitch());
-            player.setVelocity(vec);
+        	Player player = event.getPlayer();
+        	
+        	if (ServerPlugin.getVars().playerAccelList.contains(player.getName())) return;
+        	
+        	double maxSpeed = config.getDouble("AccRod_MaxSpeed");
+        	double rate = config.getDouble("AccRod_RateOfAccel");
+        	
+        	Vector origVel = player.getVelocity();
+        	Vector addVel = player.getLocation().getDirection().multiply(rate);
+        	
+        	Vector newVel = origVel.add(addVel);
+        	if (newVel.length() > maxSpeed) {
+        		Direction dir = VectorUtils.getYawPitch(newVel);
+        		double newSpeed = maxSpeed;
+        		newVel = VectorUtils.getVector(newSpeed, dir.getYaw(), dir.getPitch());
+        	}
+        	player.setVelocity(newVel);
+        	
+        	ServerPlugin.getVars().playerAccelList.add(player.getName());
+        	
+        	long delay = config.getLong("AccRod_Delay");       	
+        	Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new PlayerAccelRemover(player.getName()), delay*10L);
         }
     },
     DECELERATE {

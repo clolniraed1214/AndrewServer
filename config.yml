@@ -7,8 +7,12 @@ Speed_Divisor: 10
 # The static speed for the set_speed command
 Static_Speed: 5.0
 
-# Sets the command options for the following: (Must be NONE, ACCELERATE, DECELERATE, SET_SPEED)
-AccRod_Right_Click: SET_SPEED
+# Sets the command options for the following: (Must be NONE, ACCELERATE, DECELERATE, SET_SPEED, FLAK, BOMB)
+AccRod_MaxSpeed: 2
+AccRod_RateOfAccel: .25
+AccRod_Delay: 3
+
+AccRod_Right_Click: NONE
 AccRod_Left_Click: SET_SPEED
 
 FlakSnowball_Left_Click: NONE
