@@ -40,7 +40,7 @@ public class PlayerClickHandler implements Listener {
 		for (ASItem item : ASItem.values()) {
 			if (handHeld.getItemMeta().getDisplayName().equals(item.gameName)) {
 				
-				if (!player.hasPermission("andrewserver.items.get." + item.dataName)) {
+				if (!player.hasPermission("andrewserver.items.use." + item.dataName)) {
 					player.sendMessage(ChatColor.RED + "You do not have the proper permissions to use this item!");
 					return;
 				}
@@ -48,16 +48,18 @@ public class PlayerClickHandler implements Listener {
 				if ((event.getAction() == Action.RIGHT_CLICK_AIR)
 						|| (event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 					
-					Clickable action = Clickable.valueOf(config.getString(item.dataName + "_Right_Click"));
+					Clickable action = Clickable.valueOf(config.getString(item.dataName + ".Right_Click"));
 					action.runAction(event, config);
 					
 				} else if (((event.getAction() == Action.LEFT_CLICK_AIR)
 						|| (event.getAction() == Action.LEFT_CLICK_BLOCK))) {
 					
-					Clickable action = Clickable.valueOf(config.getString(item.dataName + "_Left_Click"));
+					Clickable action = Clickable.valueOf(config.getString(item.dataName + ".Left_Click"));
 					action.runAction(event, config);
 					
 				}
+				
+				event.setCancelled(true);
 			}
 		}
 	}

@@ -20,7 +20,9 @@ public enum SnowType {
 		@Override
 		public void hitOther(ProjectileHitEvent event, FileConfiguration config) {
 			Location boom = event.getEntity().getLocation();
-			boom.getWorld().createExplosion(boom, 4F);
+			
+			Float expSize = (float) config.getDouble("BombBay.ExplodeSize");
+			boom.getWorld().createExplosion(boom, expSize);
 			
 		}
 	},
@@ -33,7 +35,7 @@ public enum SnowType {
 			ItemStack chestplate = player.getInventory().getChestplate();
 			if (chestplate.getType().equals(Material.ELYTRA)) {
 				short damage = chestplate.getDurability();
-				damage += 108;
+				damage += config.getInt("FlakSnowball.ElytraDamage");
 				
 				if (damage > 432) {
 					damage = 432;
@@ -50,6 +52,22 @@ public enum SnowType {
 			// TODO Auto-generated method stub
 			
 		}
+	},
+	BULLET {
+
+		@Override
+		public void hitPlayer(EntityDamageByEntityEvent event, FileConfiguration config) {
+			Player player = (Player) event.getEntity();
+			player.damage(config.getDouble("AircraftGun.Damage"));
+			
+		}
+
+		@Override
+		public void hitOther(ProjectileHitEvent event, FileConfiguration config) {
+			return;
+			
+		}
+		
 	}
 	;
 	

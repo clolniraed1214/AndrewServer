@@ -7,7 +7,7 @@ import com.creamyrootbeer.AndrewServer.ServerPlugin;
 public class Meta {
 	
 	public static FixedMetadataValue meta(Object object) {
-		return new FixedMetadataValue(ServerPlugin.getPl(), object);
+		return new FixedMetadataValue(ServerPlugin.getPl(), object); // Simply to make this line shorter. It really works! :)
 	}
 	
 }

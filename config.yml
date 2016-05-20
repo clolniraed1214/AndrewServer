@@ -8,18 +8,30 @@ Speed_Divisor: 10
 Static_Speed: 5.0
 
 # Sets the command options for the following: (Must be NONE, ACCELERATE, DECELERATE, SET_SPEED, FLAK, BOMB)
-AccRod_MaxSpeed: 2
-AccRod_RateOfAccel: .25
-AccRod_Delay: 3
+AccRod:
+  MaxSpeed: 2
+  BomberMaxSpeed: 1.5
+  RateOfAccel: .25
+  Delay: 3
+  Right_Click: NONE
+  Left_Click: SET_SPEED
 
-AccRod_Right_Click: NONE
-AccRod_Left_Click: SET_SPEED
+FlakSnowball:
+  Left_Click: NONE
+  Right_Click: FLAK
+  Interval: .3
+  Radius: 5
+  ElytraDamage: 108
 
-FlakSnowball_Left_Click: NONE
-FlakSnowball_Right_Click: FLAK
+BombBay:
+  ReloadTime: 6
+  BombDropDelay: 8   # This is in ticks, so multiply number of seconds by 10
+  ExplodeSize: 4.5
+  Capacity: 5
+  Left_Click: NONE
+  Right_Click: BOMB
 
-BombBay_ReloadTime: 6
-BombBay_BombDropDelay: 8 # This is in ticks, so multiply number of seconds by 10
-BombBay_Capacity: 5
-BombBay_Left_Click: NONE
-BombBay_Right_Click: BOMB
+AircraftGun:
+  Left_Click: NONE
+  Right_Click: FIRE_GUN
+  Damage: 2

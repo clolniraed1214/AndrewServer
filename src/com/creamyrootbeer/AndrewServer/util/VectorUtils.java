@@ -17,6 +17,10 @@ public class VectorUtils {
     	return vec;
 	}
     
+    public static Vector getVector(double speed, Direction dir) {
+    	return getVector(speed, dir.getYaw(), dir.getPitch());
+    }
+    
     public static Direction getPlayerYawPitch(Location loc) {
     	Direction yawPitch = new Direction(loc.getYaw(), loc.getPitch());
     	

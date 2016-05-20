@@ -29,6 +29,14 @@ public enum ASItem {
 			return EasyItem.Create(Material.APPLE, gameName, new String[]{"<<5>>", "Bombs Left"});
 		}
 		
+	},
+	AIRCRAFT_GUN(ChatColor.RED + "Gun", "AircraftGun") {
+
+		@Override
+		public ItemStack getItem() {
+			return EasyItem.Create(Material.SNOW_BALL, gameName);
+		}
+		
 	}
 	;
 

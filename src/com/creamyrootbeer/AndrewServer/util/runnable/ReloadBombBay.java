@@ -21,7 +21,7 @@ public class ReloadBombBay implements Runnable {
 	@Override
 	public void run() {
 		
-		int capacity = ServerPlugin.getPl().getConfig().getInt("BombBay_Capacity");
+		int capacity = ServerPlugin.getPl().getConfig().getInt("BombBay.Capacity");
 		ServerPlugin.getVars().bombCounts.put(playerName, capacity);
 		
 		Bukkit.getPlayer(playerName).sendMessage(ChatColor.GREEN + "Ready to Bomb!");
