@@ -8,13 +8,13 @@ import com.creamyrootbeer.AndrewServer.util.EasyItem;
 
 public enum ASItem {
 
-	ACC_ROD(ChatColor.AQUA + "Rod of Acceleration", "AccRod") {
+	ACC_ROD(ChatColor.AQUA + "Rod of Acceleration", "AccRod", false) {
         @Override
         public ItemStack getItem() {
         	return EasyItem.Create(Material.STICK, this.gameName);
         }
     },
-	FLAK_CANNON(ChatColor.RED + "Flak Cannon", "FlakSnowball") {
+	FLAK_CANNON(ChatColor.RED + "Flak Cannon", "FlakSnowball", false) {
 
 		@Override
 		public ItemStack getItem() {
@@ -22,7 +22,7 @@ public enum ASItem {
 		}
 		
 	},
-	BOMB_BAY(ChatColor.RED + "Bombs", "BombBay") {
+	BOMB_BAY(ChatColor.RED + "Bombs", "BombBay", false) {
 
 		@Override
 		public ItemStack getItem() {
@@ -30,7 +30,7 @@ public enum ASItem {
 		}
 		
 	},
-	AIRCRAFT_GUN(ChatColor.RED + "Gun", "AircraftGun") {
+	AIRCRAFT_GUN(ChatColor.RED + "Gun", "AircraftGun", false) {
 
 		@Override
 		public ItemStack getItem() {
@@ -42,12 +42,14 @@ public enum ASItem {
 
 	public final String gameName;
 	public final String dataName;
-
+	public final boolean droppable;
+	
     public abstract ItemStack getItem();
     
-	ASItem(String name, String dataName) {
+	ASItem(String name, String dataName, boolean droppable) {
 		this.gameName = name;
 		this.dataName = dataName;
+		this.droppable = droppable;
 	}
 
 }

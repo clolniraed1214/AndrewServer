@@ -19,8 +19,8 @@ import com.creamyrootbeer.AndrewServer.entities.SnowType;
 import com.creamyrootbeer.AndrewServer.util.Direction;
 import com.creamyrootbeer.AndrewServer.util.VectorUtils;
 import com.creamyrootbeer.AndrewServer.util.meta.Meta;
-import com.creamyrootbeer.AndrewServer.util.runnable.DropNewBomb;
-import com.creamyrootbeer.AndrewServer.util.runnable.PlayerAccelRemover;
+import com.creamyrootbeer.AndrewServer.util.runnable.AllowNewBombDrop;
+import com.creamyrootbeer.AndrewServer.util.runnable.AllowPlayerAccel;
 import com.creamyrootbeer.AndrewServer.util.runnable.ReloadBombBay;
 import com.creamyrootbeer.AndrewServer.util.runnable.SnowballRemover;
 
@@ -56,7 +56,7 @@ public enum Clickable {
 			ServerPlugin.getVars().playerAccelList.add(player.getName());
 
 			long delay = config.getLong("AccRod.Delay");
-			Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new PlayerAccelRemover(player.getName()),
+			Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new AllowPlayerAccel(player.getName()),
 					delay * 10L);
 		}
 
@@ -166,7 +166,7 @@ public enum Clickable {
 				Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new ReloadBombBay(name), reloadTime * 10L);
 				event.getPlayer().sendMessage(ChatColor.GREEN + "Reloading Bombs!");
 			} else {
-				Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new DropNewBomb(name), delayTime);
+				Bukkit.getScheduler().runTaskLater(ServerPlugin.getPl(), new AllowNewBombDrop(name), delayTime);
 			}
 
 			ItemStack item = event.getPlayer().getInventory().getItemInOffHand();
